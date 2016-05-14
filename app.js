@@ -52,16 +52,17 @@ function Chart (opts) {
   console.log('Chart')
   var self = this
 
-  this.el = el('div',
-    this.canvas = el('canvas')
-  )
+  //this.el = el('div',
+    this.el = el('canvas')
+  //)
 
   // frzr lifecycle hook
-  this.mounted = function () {
+  //this.mounted = function () {
+  this.init = function () {
     console.log('Chart mounted [%s]', ++mount_counter)
     // wrapping in 'immediate' setTimeout fixes the the issues
     //setTimeout(function () {
-      initRealtimeChart(self.canvas, opts)
+      initRealtimeChart(self.el, opts)
     //}, 0)
   }
 }
@@ -80,9 +81,16 @@ function Dashboard (opts) {
     this.charts
   )
 
-  //this.charts.forEach(function (chart) {
-  //  mount(this.el, chart)
-  //})
+  // frzr lifecycle hook
+  this.mounted = function () {
+    console.log('Chart mounted [%s]', ++mount_counter)
+    // wrapping in 'immediate' setTimeout fixes the the issues
+    //setTimeout(function () {
+    this.charts.forEach(function (chart) {
+      chart.init()
+    })
+    //}, 0)
+  }
 
 } // Dashboard
 
