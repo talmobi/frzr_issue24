@@ -83,10 +83,11 @@ function Dashboard (opts) {
 
   // frzr lifecycle hook
   this.mounted = function () {
-    console.log('Chart mounted [%s]', ++mount_counter)
+    console.log('dashboard mouted called')
     // wrapping in 'immediate' setTimeout fixes the the issues
     //setTimeout(function () {
     this.charts.forEach(function (chart) {
+      console.log('chart offsetWidth: %s', chart.el.offsetWidth)
       chart.init()
     })
     //}, 0)

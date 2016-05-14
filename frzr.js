@@ -193,6 +193,8 @@
     var childEl = child.el || child;
     var childWasMounted = childEl.parentNode != null;
 
+    console.log('offsetWidth: %s', childEl.offsetWidth)
+
     if (childWasMounted) {
       child.remounting && child.remounting();
     } else {
